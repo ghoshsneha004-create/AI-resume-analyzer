@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env
+.env.local
+
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+
+__pycache__/
+*.pyc
+
+generated_reports/
+uploads/
