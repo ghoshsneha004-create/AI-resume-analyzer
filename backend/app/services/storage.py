@@ -8,7 +8,8 @@ from app.core.config import settings
 class StorageService:
     def __init__(self, upload_dir: str = settings.UPLOAD_DIR):
         self.upload_dir = upload_dir
-        os.makedirs(self.upload_dir, exist_ok=True)
+        if os.getenv("VERCEL") is None:
+         os.makedirs(self.upload_dir, exist_ok=True)
 
     def validate_file(self, file: UploadFile) -> Tuple[str, str]:
         filename = file.filename or "unknown"
