@@ -40,5 +40,6 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
-os.makedirs(settings.REPORTS_DIR, exist_ok=True)
+if os.getenv("VERCEL") is None:
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
+    os.makedirs(settings.REPORTS_DIR, exist_ok=True)
