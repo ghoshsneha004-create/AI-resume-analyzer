@@ -1,3 +1,4 @@
+from app.core.config import settings
 import os
 from docx import Document
 from reportlab.lib.pagesizes import letter
@@ -6,7 +7,8 @@ from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-os.makedirs("sample_resumes", exist_ok=True)
+if os.getenv("VERCEL") is None:
+    os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 
 # 1. Generate DOCX Sample Resume
 doc = Document()

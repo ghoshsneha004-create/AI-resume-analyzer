@@ -13,7 +13,8 @@ from app.core.config import settings
 class ReportGenerator:
     def __init__(self, output_dir: str = settings.REPORTS_DIR):
         self.output_dir = output_dir
-        os.makedirs(self.output_dir, exist_ok=True)
+        if os.getenv("VERCEL") is None:
+         os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
 
     def generate_pdf(self, resume_data: Dict[str, Any], analysis_data: Dict[str, Any]) -> str:
         report_id = f"report_{uuid.uuid4().hex[:12]}.pdf"
